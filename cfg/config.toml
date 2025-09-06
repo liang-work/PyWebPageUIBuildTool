@@ -1,0 +1,7 @@
+[webview]
+enabled = true
+title = "PyWebPageUI"
+width = 1280
+height = 720
+host = "0.0.0.0"
+port = 5000

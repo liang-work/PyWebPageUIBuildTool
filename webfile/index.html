@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PyWebPageUIBuildTool</title>
+        <script>
+            function buildProject() {
+                fetch('/testcrash/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'project_name': 'test',
+                        'project_path': 'test',
+                        'project_type': 'test',
+                        'project_config': 'test',
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        // 打开新窗口并写入错误页面
+                        const errorWindow = window.open('/error/500.html', '_blank');
+                        return response.text().then(html => {
+                            errorWindow.document.write(html);
+                        });
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <h1>PyWebPageUIBuildTool</h1>
+        <button onclick="buildProject()">构建</button>
+    </body>
+</html>

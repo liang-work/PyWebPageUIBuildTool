@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>错误页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 20px;
+        }
+        .error-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .error-header {
+            color: #dc3545;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .error-stack {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .button:hover {
+            background: #0069d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1 class="error-header">程序发生错误</h1>
+        <div class="error-stack">{{ error }}</div>
+        <div>
+            <button class="button" onclick="copyError()">复制错误</button>
+            <button class="button" onclick="window.close()">关闭窗口</button>
+        </div>
+    </div>
+    <script>
+        function copyError() {
+            const errorText = document.querySelector('.error-stack').innerText;
+            navigator.clipboard.writeText(errorText);
+            alert('错误信息已复制到剪贴板');
+        }
+    </script>
+</body>
+</html>
